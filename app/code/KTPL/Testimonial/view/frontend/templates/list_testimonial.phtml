@@ -1,0 +1,48 @@
+<style>
+    .pull-right {
+        float: right;
+    }
+</style>
+<?php
+//echo "sfsdfsdf";
+//echo "<pre>";
+//var_dump($block->getTestimonialData());
+//die;
+?>
+<div class="container">
+    <h3>Testimonial</h3>
+    <div class="row">
+
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <?php
+            $collection = $block->getTestimonialData();
+            foreach ($collection as $item) {
+                ?>
+
+                <div>
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted"><?php echo date('d/m/Y', strtotime($item->getData('created_at'))); ?></small>
+                                </span>
+                    <strong class="text-success">@<?php echo $item->getData('name'); ?></strong>
+                    <p>
+                        <?php echo $item->getData('message'); ?>
+                        <span class="pull-right">
+                             <?php
+                             for ($cnt = 1; $cnt <= 5; $cnt++) {
+                                 if ($cnt <= $item->getData('ratings')) {
+                                     echo " * ";
+                                 }
+                             }
+                             ?>
+                        </span>
+                    </p>
+                </div>
+                <hr>
+            <?php } ?>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Welcome to Testimonial Page</title>
+    </head>
+    <body>
+        <referenceBlock name="navigation.sections" remove="true"/>
+        <referenceContainer name="content">
+            <block class="KTPL\Testimonial\Block\Testimonial" name="ktpl.testimonial"
+                   template="KTPL_Testimonial::testimonial.xml"/>
+        </referenceContainer>
+    </body>
+</page>

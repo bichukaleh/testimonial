@@ -1,0 +1,66 @@
+<div class="container">
+    <h3>New Testimonial</h3>
+    <div class="row">
+        <div class="col-md-8">
+            <form action="<?php echo $block->getFormAction(); ?>" method="post" class="review-form"
+                  id="add-testimonial">
+                <fieldset class="fieldset">
+                    <div class="field name required">
+                        <label for="name" class="label"><span>Name</span>:</label>
+                        <div class="control">
+                            <input name="name" id="name" class="form-control input-text" type="text"
+                                   data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field email required">
+                        <label for="email" class="label"><span>Email</span>:</label>
+                        <div class="control">
+                            <input name="email" id="email" class="form-control input-text" type="text"
+                                   data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="image" class="label">Image:</label>
+                        <div class="control">
+                            <input name="image" id="image" class="form-control" type="file"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="ratings" class="label">Ratings:</label>
+                        <div class="control">
+                            <input name="ratings" id="ratings" class="form-control" type="number"/>
+                        </div>
+                    </div>
+                    <div class="form-group field message required">
+                        <label for="message" class="label">Message:</label>
+                        <div class="control">
+                            <textarea class="form-control" name="message" id="message"
+                                      data-validate="{required:true}"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="action primary">
+                        <a href="<?php echo $this->getUrl('testimonial/index/listtestimonial'); ?>"
+                           class="action submit primary">Back to Testimonial</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'mage/mage'
+    ], function ($) {
+
+        var dataForm = $('#add-testimonial');
+        dataForm.mage('validation', {});
+
+    });
+
+</script>

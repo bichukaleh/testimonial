@@ -1,0 +1,34 @@
+<link href="http://10.16.16.187/magento2demo/pub/static/version1568293315/adminhtml/Magento/backend/en_US/KTPL_Testimonial/ratings.css" rel="stylesheet"/>
+<div class="row custom-row">
+    <div class="col-25">
+        <label class="label custom-label admin__field-label">Ratings</label>
+    </div>
+    <div class="col-50">
+        <div class="admin__field admin__field-rating">
+            <div class="admin__field-control" data-widget="ratingControl">
+                <?php for ($_iterator = 5; $_iterator >=1; $_iterator--) : ?>
+                    <input type="radio" class="testimonial-rating" data-form-part="ktpl_testimonial_testimonial_edit"
+                           name="ratings"
+                           id="<?php echo $_iterator ?>_<?php echo $_iterator ?>"
+                           value="<?php echo $_iterator ?>" style="display: none"
+                        <?php echo $block->getRatings() <= $_iterator ? "checked":'' ?>
+                    />
+                    <label for="<?php echo $_iterator ?>_<?php echo $_iterator ?>" ">&#9733;</label>
+                <?php endfor ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require([
+        "jquery",
+        "mage/mage",
+        "Magento_Review/js/rating"
+    ], function ($) {
+        "use strict";
+
+        $('[data-widget=ratingControl]').ratingControl();
+
+    });
+</script>

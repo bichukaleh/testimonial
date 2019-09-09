@@ -16,5 +16,54 @@
         </arguments>
     </type>
 
-    
+    <virtualType name="ImageUploader" type="KTPL\Testimonial\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">testimonial/tmp/</argument>
+            <argument name="basePath" xsi:type="string">testimonial</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="KTPL\Testimonial\Controller\Adminhtml\Testimonial\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ImageUploader</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="testimonial" xsi:type="object">KTPL\Testimonial\Console\ListTestimonial</item>
+            </argument>
+            <argument name="commands" xsi:type="array">
+                <item name="print-name" xsi:type="object">KTPL\Testimonial\Console\Printname</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="KTPL\Testimonial\Controller\Index\Test">
+        <plugin name="Mageplaza_HelloWorld_Plugin" type="KTPL\Testimonial\Plugin\TestPlugin" sortOrder="10" disabled="false"  />
+    </type>
+
+    <type name="Magento\Framework\App\Router\NoRouteHandlerList">
+        <arguments>
+            <argument name="handlerClassesList" xsi:type="array">
+                <item name="default" xsi:type="array">
+                    <item name="class"
+                          xsi:type="string">KTPL\Testimonial\Controller\Index\NoRouteHandler</item>
+                    <item name="sortOrder" xsi:type="string">200</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>
