@@ -11,6 +11,7 @@
 	<column length="11" name="name" nullable="false" xsi:type="text"/>
 	<column length="66" name="email" nullable="false" xsi:type="text"/>
 	<column length="5" name="ratings" nullable="true" xsi:type="text"/>
+	<column name="sort_order" nullable="true" xsi:type="int"/>
 	<column length="255" name="image" nullable="true" xsi:type="text"/>
 	<column length="255" name="message" nullable="false" xsi:type="text"/>
 	<column name="is_approved" nullable="false" xsi:type="int" default="1"/>

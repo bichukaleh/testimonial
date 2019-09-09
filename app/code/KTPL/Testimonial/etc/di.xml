@@ -16,5 +16,27 @@
         </arguments>
     </type>
 
-    
+    <virtualType name="ImageUploader" type="KTPL\Testimonial\Model\ImageUploader">
+        <arguments>
+            <argument name="baseTmpPath" xsi:type="string">testimonial/tmp/</argument>
+            <argument name="basePath" xsi:type="string">testimonial</argument>
+            <argument name="allowedExtensions" xsi:type="array">
+                <item name="jpg" xsi:type="string">jpg</item>
+                <item name="jpeg" xsi:type="string">jpeg</item>
+                <item name="gif" xsi:type="string">gif</item>
+                <item name="png" xsi:type="string">png</item>
+            </argument>
+            <argument name="allowedMimeTypes" xsi:type="array">
+                <item name="jpg" xsi:type="string">image/jpg</item>
+                <item name="jpeg" xsi:type="string">image/jpeg</item>
+                <item name="gif" xsi:type="string">image/gif</item>
+                <item name="png" xsi:type="string">image/png</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="KTPL\Testimonial\Controller\Adminhtml\Testimonial\Upload">
+        <arguments>
+            <argument name="imageUploader" xsi:type="object">ImageUploader</argument>
+        </arguments>
+    </type>
 </config>

@@ -18,17 +18,23 @@
             </button>
         </buttons>
     </settings>
-    <dataSource component="Magento_Ui/js/grid/provider" name="ktpl_testimonial_testimonial_listing_data_source">
-        <settings>
-            <updateUrl path="mui/index/render"/>
-        </settings>
-        <aclResource>KTPL_Testimonial::Testimonial</aclResource>
-        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="ktpl_testimonial_testimonial_listing_data_source">
-            <settings>
-                <requestFieldName>id</requestFieldName>
-                <primaryFieldName>testimonial_id</primaryFieldName>
-            </settings>
-        </dataProvider>
+
+    <dataSource name="ktpl_testimonial_testimonial_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">KTPL\Testimonial\Model\ListAllDataProvider</argument>
+            <argument name="name" xsi:type="string">ktpl_testimonial_testimonial_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">testimonial_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">testimonial_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
     </dataSource>
     <listingToolbar name="listing_top">
         <settings>
@@ -36,7 +42,16 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
-        <filters name="listing_filters"/>
+        <filters name="listing_filters" >
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="deleted" xsi:type="array">
+                        <item name="deleted_at" xsi:type="string">null</item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="ktpl_testimonial_testimonial_listing">
@@ -52,7 +67,7 @@
                 <label translate="true">ID</label>
             </settings>
         </column>
-        <column name="name">
+        <column name="name" sortOrder="2">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Name</label>
@@ -64,7 +79,7 @@
                 </editor>
             </settings>
         </column>
-        <column name="email">
+        <column name="email" sortOrder="3">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Email</label>
@@ -76,7 +91,7 @@
                 </editor>
             </settings>
         </column>
-        <column name="message">
+        <column name="message" sortOrder="4">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Message</label>
@@ -88,10 +103,31 @@
                 </editor>
             </settings>
         </column>
-        <actionsColumn name="actions" class="KTPL\Testimonial\Ui\Component\Listing\Column\Actions">
+        <column name="is_approved" class="KTPL\Testimonial\Ui\Component\Listing\Column\IsApproved" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">60</item>
+                    <item name="label" translate="true" xsi:type="string">Approval Status</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+        <column name="image" class="KTPL\Testimonial\Ui\Component\Listing\Column\Thumbnail"  component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">image</item>
+                    <item name="has_preview" xsi:type="string">1</item>
+                    <item name="label" xsi:type="string" translate="true">Thumbnail</item>
+                </item>
+            </argument>
+        </column>
+        <actionsColumn name="actions" class="KTPL\Testimonial\Ui\Component\Listing\Column\Actions" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">testimonial_id</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
                 </item>
             </argument>
         </actionsColumn>

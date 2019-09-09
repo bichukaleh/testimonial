@@ -1,0 +1,8 @@
+<?php
+$imageDetails=$block->getImagePath();
+if($imageDetails['name'] != "" || $imageDetails['name'] != NULL) {
+    ?>
+    <img src="<?php echo $imageDetails['fullPath']; ?>" height="10%" width="10%">
+    <?php
+}
+    ?>

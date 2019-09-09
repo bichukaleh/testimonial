@@ -52,15 +52,15 @@ class Actions extends \Magento\Ui\Component\Listing\Columns\Column
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
-                                static::URL_PATH_DELETE,
+                                self::URL_PATH_DELETE,
                                 [
                                     'testimonial_id' => $item['testimonial_id']
                                 ]
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
+                                'title' => __('Delete Testimonial'),
+                                'message' => __('Are you sure you wan\'t to delete a Testimonial record?')
                             ]
                         ]
                     ];
