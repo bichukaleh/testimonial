@@ -158,6 +158,9 @@
                         <allowedExtensions>jpg jpeg gif png</allowedExtensions>
                         <maxFileSize>4194304</maxFileSize>
                         <placeholderType>image</placeholderType>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                        </validation>
                     </settings>
                 </imageUploader>
             </formElements>

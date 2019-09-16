@@ -10,7 +10,7 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Filesystem;
 use KTPL\Testimonial\Model\TestimonialFactory;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-use Magento\MediaStorage\Model\File\UploaderFactory;
+use Magento\Framework\Filesystem\Driver\File;
 
 class Save extends Action implements HttpPostActionInterface
 {
@@ -18,24 +18,23 @@ class Save extends Action implements HttpPostActionInterface
     protected $_pageFactory;
     protected $_testimonialFactory;
     protected $_timezoneInterface;
-    protected $_uploadFactory;
+    protected $_file;
 
     /**
      * Save constructor.
      * @param Context $context
      * @param PageFactory $pageFactory
      * @param TestimonialFactory $testimonialFactory
-     * @param Filesystem $filesystem
      * @param TimezoneInterface $timezone
-     * @param UploaderFactory $uploaderFactory
+     * @param File $file
      * @throws \Magento\Framework\Exception\FileSystemException
      */
-    public function __construct(Context $context, PageFactory $pageFactory, TestimonialFactory $testimonialFactory, TimezoneInterface $timezone, UploaderFactory $uploaderFactory)
+    public function __construct(Context $context, PageFactory $pageFactory, TestimonialFactory $testimonialFactory, TimezoneInterface $timezone, File $file)
     {
         $this->_pageFactory = $pageFactory;
         $this->_testimonialFactory = $testimonialFactory;
         $this->_timezoneInterface = $timezone;
-        $this->__uploadFactory = $uploaderFactory;
+        $this->_file = $file;
         parent::__construct($context);
     }
 
@@ -53,6 +52,12 @@ class Save extends Action implements HttpPostActionInterface
                 $input['updated_at'] = $this->_timezoneInterface->date()->format('m/d/y H:i:s');
 
                 if (isset($input['image'][0]) && $input['image'][0]['name'] != "") {
+                    $mediaDirectory = $this->_objectManager->get('Magento\Framework\Filesystem')->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA);
+                    $mediaRootDir = $mediaDirectory->getAbsolutePath('testimonial/tmp');
+
+                    if ($this->_file->isExists($mediaRootDir . '/'.$input['image'][0]['name']))  {
+                        $this->_file->deleteFile($mediaRootDir. '/'. $input['image'][0]['name']);
+                    }
                     $input['image'] = $input['image'][0]['name'];
                 }
                 if ($id = $this->getRequest()->getParam('testimonial_id')) {

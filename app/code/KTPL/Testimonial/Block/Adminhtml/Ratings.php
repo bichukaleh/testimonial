@@ -1,16 +1,37 @@
 <?php
+
 namespace KTPL\Testimonial\Block\Adminhtml;
+
+use KTPL\Testimonial\Model\TestimonialFactory;
 use Magento\Framework\View\Element\Template;
 
-class Ratings extends Template{
+class Ratings extends Template
+{
 
-    public function __construct(Template\Context $context, array $data = [])
+    protected $testimonial;
+
+    /**
+     * Ratings constructor.
+     * @param Template\Context $context
+     * @param TestimonialFactory $testimonialFactory
+     * @param array $data
+     */
+    public function __construct(Template\Context $context, TestimonialFactory $testimonialFactory, array $data = [])
     {
+        $this->testimonial = $testimonialFactory;
         parent::__construct($context, $data);
     }
 
-    public function getRatings(){
+    /**
+     * get testimonial rating numbers
+     * @return mixed
+     */
+    public function getRatings()
+    {
+        $testimonial = $this->testimonial->create();
+        $param = $this->getRequest()->getParam('testimonial_id');
 
-        return 3;
+        $testimonialData = $testimonial->getCollection()->addFieldToFilter('testimonial_id', ['eq' => $param])->getData();
+        return $testimonialData[0]['ratings'];
     }
 }

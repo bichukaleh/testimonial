@@ -2,14 +2,13 @@
 
 namespace KTPL\Testimonial\Controller\Adminhtml\Testimonial;
 
-
+use KTPL\Testimonial\Model\TestimonialFactory;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
-use KTPL\Testimonial\Model\TestimonialFactory;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
 
-class Delete extends Action
+class MassDelete extends Action
 {
 
     protected $_pageFactory;
@@ -20,7 +19,7 @@ class Delete extends Action
      * Save constructor.
      * @param Context $context
      * @param PageFactory $pageFactory
-     * @param TestimonialFactory $testimonialFactory
+     * @param CollectionFactory $testimonialFactory
      * @param TimezoneInterface $timezone
      * @throws \Magento\Framework\Exception\FileSystemException
      */
@@ -32,24 +31,27 @@ class Delete extends Action
         parent::__construct($context);
     }
 
+
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
-            try {
+        $selectedValues = $this->getRequest()->getParams();
+        $selectedValues = $selectedValues['selected'];
+        try {
+            foreach ($selectedValues as $testimonial_id) {
                 $testimonial = $this->_testimonialFactory->create();
                 $input['deleted_at'] = $this->_timezoneInterface->date()->format('m/d/y H:i:s');
-
-                if ($id = $this->getRequest()->getParam('testimonial_id')) {
-                    $testimonial->setId($id)->addData($input)->save();
-                }
-                $this->messageManager->addSuccessMessage(__('Testimonial details deleted successfully..'));
-                return $this->_redirect('ktpl_testimonial/testimonial/index');
-            } catch (\Exception $exception) {
-                $this->messageManager->addErrorMessage($exception->getMessage());
-                return $this->_redirect('ktpl_testimonial/testimonial/index');
+                $testimonial->setId($testimonial_id)->addData($input)->save();
             }
+
+            $this->messageManager->addSuccessMessage(__('Testimonial details deleted successfully..'));
+            return $this->_redirect('ktpl_testimonial/testimonial/index');
+        } catch (\Exception $exception) {
+            $this->messageManager->addErrorMessage($exception->getMessage());
+            return $this->_redirect('ktpl_testimonial/testimonial/index');
+        }
     }
 
 }

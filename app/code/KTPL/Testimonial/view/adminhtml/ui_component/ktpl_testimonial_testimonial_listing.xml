@@ -42,6 +42,7 @@
         </settings>
         <bookmark name="bookmarks"/>
         <columnsControls name="columns_controls"/>
+        <filterSearch name="message"/>
         <filters name="listing_filters" >
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -51,7 +52,19 @@
                 </item>
             </argument>
         </filters>
-
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete the selected customers?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="ktpl_testimonial/testimonial/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="ktpl_testimonial_testimonial_listing">

@@ -6,12 +6,14 @@
     <div class="col-50">
         <div class="admin__field admin__field-rating">
             <div class="admin__field-control" data-widget="ratingControl">
-                <?php for ($_iterator = 5; $_iterator >= 1; $_iterator--) : ?>
+                <?php for ($_iterator = 5; $_iterator >=1; $_iterator--) : ?>
                     <input type="radio" class="testimonial-rating" data-form-part="ktpl_testimonial_testimonial_edit"
                            name="ratings"
                            id="<?php echo $_iterator ?>_<?php echo $_iterator ?>"
-                           value="<?php echo $_iterator ?>" style="display: none"/>
-                    <label for="<?php echo $_iterator ?>_<?php echo $_iterator ?>">&#9733;</label>
+                           value="<?php echo $_iterator ?>" style="display: none"
+                        <?php echo $block->getRatings() <= $_iterator ? "checked":'' ?>
+                    />
+                    <label for="<?php echo $_iterator ?>_<?php echo $_iterator ?>" ">&#9733;</label>
                 <?php endfor ?>
             </div>
         </div>
