@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="testimonial" ifconfig="testimonial/general/enable">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Testimonial</argument>
+                    <argument name="path" xsi:type="string">testimonial/index/newtestimonial</argument>
+                    <argument name="attributes" xsi:type="array">
+                        <item name="target" xsi:type="string">_blank</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="header.links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="header-menu" ifconfig="testimonial/general/enable">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Testimonial</argument>
+                    <argument name="path" xsi:type="string">testimonial/index/newtestimonial</argument>
+                    <argument name="attributes" xsi:type="array">
+                        <item name="target" xsi:type="string">_blank</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

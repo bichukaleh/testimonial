@@ -51,7 +51,7 @@ class ListAllDataProvider extends AbstractDataProvider
      */
     public function getCollection()
     {
-        return $this->collection;
+        return $this->collection->setOrder('testimonial_id','DESC');
 
     }
 

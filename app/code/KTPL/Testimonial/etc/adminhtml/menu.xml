@@ -5,6 +5,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="KTPL_Testimonial::data" title="Testimonial" module="KTPL_Testimonial" sortOrder="74" resource="KTPL_Testimonial::data"
-             action="ktpl_testimonial/testimonial/index"/>
+             action="ktpl_testimonial/testimonial/index" dependsOnConfig="testimonial/general/enable"/>
     </menu>
 </config>
