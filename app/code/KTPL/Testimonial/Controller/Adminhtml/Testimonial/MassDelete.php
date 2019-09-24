@@ -7,21 +7,18 @@ use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\App\Action\Action;
 use Magento\Framework\App\Action\Context;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
-
 class MassDelete extends Action
 {
-
     protected $_pageFactory;
     protected $_testimonialFactory;
     protected $_timezoneInterface;
 
     /**
-     * Save constructor.
+     * MassDelete constructor.
      * @param Context $context
      * @param PageFactory $pageFactory
-     * @param CollectionFactory $testimonialFactory
+     * @param TestimonialFactory $testimonialFactory
      * @param TimezoneInterface $timezone
-     * @throws \Magento\Framework\Exception\FileSystemException
      */
     public function __construct(Context $context, PageFactory $pageFactory, TestimonialFactory $testimonialFactory, TimezoneInterface $timezone)
     {
@@ -30,7 +27,6 @@ class MassDelete extends Action
         $this->_timezoneInterface = $timezone;
         parent::__construct($context);
     }
-
 
     /**
      * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface

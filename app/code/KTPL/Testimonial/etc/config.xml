@@ -5,6 +5,7 @@
             <general>
                 <enable>1</enable>
                 <link_visibility>1</link_visibility>
+                <auto_approve>1</auto_approve>
             </general>
         </testimonial>
     </default>
