@@ -17,4 +17,5 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 		$this->_init('KTPL\Testimonial\Model\Testimonial', 'KTPL\Testimonial\Model\ResourceModel\Testimonial');
 	}
 
+
 }
