@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="footer_links">
-            <block class="Magento\Framework\View\Element\Html\Link\Current" name="testimonial" ifconfig="testimonial/general/enable">
+            <block class="Magento\Framework\View\Element\Html\Link\Current" name="testimonial" ifconfig="testimonial/general/link_visibility">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Testimonial</argument>
                     <argument name="path" xsi:type="string">testimonial/index/newtestimonial</argument>
@@ -14,7 +14,7 @@
             </block>
         </referenceBlock>
         <referenceBlock name="header.links">
-            <block class="Magento\Framework\View\Element\Html\Link" name="header-menu" ifconfig="testimonial/general/enable">
+            <block class="Magento\Framework\View\Element\Html\Link" name="header-menu" ifconfig="testimonial/general/link_visibility">
                 <arguments>
                     <argument name="label" xsi:type="string" translate="true">Testimonial</argument>
                     <argument name="path" xsi:type="string">testimonial/index/newtestimonial</argument>

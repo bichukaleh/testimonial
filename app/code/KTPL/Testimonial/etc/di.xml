@@ -66,4 +66,6 @@
             </argument>
         </arguments>
     </type>
+    <preference for="KTPL\Testimonial\Api\Data\TestimonialInterface" type="KTPL\Testimonial\Model\Testimonial"/>
+    <preference for="KTPL\Testimonial\Api\TestimonialRepositoryInterface" type="KTPL\Testimonial\Model\TestimonialRespository"/>
 </config>

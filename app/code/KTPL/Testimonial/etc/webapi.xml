@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/testimonials" method="GET">
+        <service class="KTPL\Testimonial\Api\TestimonialRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testimonials/:testimonial_id" method="GET">
+        <service class="KTPL\Testimonial\Api\TestimonialRepositoryInterface" method="getTestimonialById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testimonials/save" method="POST">
+        <service class="KTPL\Testimonial\Api\TestimonialRepositoryInterface" method="saveTestimonialData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testimonials/save" method="PUT">
+        <service class="KTPL\Testimonial\Api\TestimonialRepositoryInterface" method="saveTestimonialData"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <route url="/V1/testimonials/:testimonial_id" method="DELETE">
+        <service class="KTPL\Testimonial\Api\TestimonialRepositoryInterface" method="DeleteTestimonialById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

@@ -17,7 +17,7 @@ use Magento\Framework\Filesystem;
 
 /**
  * Class DataProvider
- * @package Training\Testimonial\Model\Sample
+ * @package KTPL\Testimonial\Model\ListAllDataProvider
  */
 class ListAllDataProvider extends AbstractDataProvider
 {
