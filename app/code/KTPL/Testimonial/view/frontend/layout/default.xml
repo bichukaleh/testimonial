@@ -24,5 +24,8 @@
                 </arguments>
             </block>
         </referenceBlock>
+        <referenceBlock name="content">
+            <block class="KTPL\Testimonial\Block\ListTestimonial" name="home-content" ifconfig="testimonial/general/enable" template="KTPL_Testimonial::slider.phtml" />
+        </referenceBlock>
     </body>
 </page>
