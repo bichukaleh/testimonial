@@ -1,22 +1,20 @@
 <?php
 
-
 namespace KTPL\Testimonial\Api\Data;
-
 
 interface TestimonialInterface
 {
-    const Id= "id";
-    const Name= "name";
-    const Email= "email";
-    const Image= "image";
-    const Ratings= "ratings";
-    const Message= "message";
-    const IsApproved= "is_approved";
-    const IsEnable= "is_enable";
-    const CreatedAt= "created_at";
-    const UpdatedAt= "updated_at";
-    const DeletedAt= "deleted_at";
+    const Id = "id";
+    const Name = "name";
+    const Email = "email";
+    const Image = "image";
+    const Ratings = "ratings";
+    const Message = "message";
+    const IsApproved = "is_approved";
+    const IsEnable = "is_enable";
+    const CreatedAt = "created_at";
+    const UpdatedAt = "updated_at";
+    const DeletedAt = "deleted_at";
 
     /**
      * get testimonial Id
@@ -35,7 +33,7 @@ interface TestimonialInterface
      * get testimonial name
      * @return string
      */
-    public function getName();
+//    public function getName();
 
     /**
      * set testimonial name

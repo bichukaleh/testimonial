@@ -34,7 +34,18 @@ foreach($testimonials as $testimonial):?>
     </div>
     <?php endforeach; ?>
 </div>
-
+<div class="custom-js">
+    <span>xsjdiwej</span>
+</div>
+<!--<script>-->
+<!--    require([-->
+<!---->
+<!--        'customScript',-->
+<!--        'jquery',-->
+<!--    ], function ($, script) {-->
+<!--      console.log('slider.html','test');-->
+<!--    });-->
+<!--</script>-->
 <script type="text/x-magento-init">
     {
         "#owl-demo": {
@@ -44,6 +55,12 @@ foreach($testimonials as $testimonial):?>
                 "itemsDesktop": [1199, 3],
                 "itemsDesktopSmall": [979, 3]
             }
+        },
+        ".custom-js":{
+            "customScript":{
+                "name":"<?php echo $block->escapeJs($block->getBaseUrl());?>"
+            }
         }
     }
+
 </script>

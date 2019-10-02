@@ -4,6 +4,7 @@
 namespace KTPL\Testimonial\Api;
 
 use KTPL\Testimonial\Api\Data\TestimonialInterface;
+
 interface TestimonialRepositoryInterface
 {
     /**
