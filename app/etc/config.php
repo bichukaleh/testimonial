@@ -167,7 +167,7 @@ return [
         'Magento_Wishlist' => 1,
         'Magento_WishlistAnalytics' => 1,
         'Magento_WishlistGraphQl' => 1,
-        'KTPL_Testimonial' => 1,
+        'KTPL_Testimonial' => 0,
         'KTPL_Training' => 1
     ]
 ];

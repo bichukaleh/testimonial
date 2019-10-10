@@ -1,0 +1,21 @@
+<h4>Test123</h4>
+<div data-bind="scope: 'koexample'">
+    <h3 data-bind="text:title"></h3>
+    <p data-bind="text: sayhello"></p>
+    <pre  data-bind="text: JSON.stringify(config,null,2)"></pre>
+</div>
+
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "koexample": {
+                            "component": "KTPL_Training/js/koexample",
+                            "template" : "KTPL_Training/example"
+                        }
+                    }
+                }
+            }
+        }
+</script>

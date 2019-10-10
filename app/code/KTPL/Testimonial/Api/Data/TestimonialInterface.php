@@ -4,7 +4,7 @@ namespace KTPL\Testimonial\Api\Data;
 
 interface TestimonialInterface
 {
-    const Id = "id";
+    const Id = "testimonial_id";
     const Name = "name";
     const Email = "email";
     const Image = "image";

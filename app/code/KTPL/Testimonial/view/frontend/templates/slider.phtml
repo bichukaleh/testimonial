@@ -34,9 +34,8 @@ foreach($testimonials as $testimonial):?>
     </div>
     <?php endforeach; ?>
 </div>
-<div class="custom-js">
-    <span>xsjdiwej</span>
-</div>
+<pre class="custom-js" id="custom-js">
+</pre>
 <!--<script>-->
 <!--    require([-->
 <!---->
@@ -58,7 +57,7 @@ foreach($testimonials as $testimonial):?>
         },
         ".custom-js":{
             "customScript":{
-                "name":"<?php echo $block->escapeJs($block->getBaseUrl());?>"
+                "base_url":"<?php echo $block->escapeJs($block->getBaseUrl());?>"
             }
         }
     }
