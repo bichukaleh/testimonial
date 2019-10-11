@@ -7,7 +7,7 @@ define(['ko'], function (ko) {
         };
 
         vM.fullName = ko.computed(function(){
-            return this.firstName() + '' + this.lastName();
+            return this.firstName() + ' ' + this.lastName();
         }.bind(vM));
 
         return vM;

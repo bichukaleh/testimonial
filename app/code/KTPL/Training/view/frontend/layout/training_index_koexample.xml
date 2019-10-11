@@ -8,7 +8,7 @@
 <!--    </body>-->
     <remove name="testimonial_listtestimonial" />
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template"
+            <block class="KTPL\Training\Block\Test"
                    name="KTPL_training" template="KTPL_Training::ko_example.phtml"/>
         </referenceContainer>
 </page>

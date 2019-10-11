@@ -1,7 +1,8 @@
 <h4>KO</h4>
+<p><?php echo "custom var:". $block->getVariableValue('custom_variable_code') ?>  </p>
 <div data-bind="scope: 'example'" id="example">
-    First Name: <p data-bind="text: firstName"></p>
-    <br>Last Name: <p data-bind="text: lastName"></p>
+    <p>First Name:<input data-bind="value: firstName"/></p>
+    <p>Last Name: <input data-bind="value: lastName"/></p>
     <br><p data-bind="text: fullName">123</p>
 </div>
 <script type="text/x-magento-init">
