@@ -27,7 +27,7 @@ class FeaturedProductsList extends ListProduct
      */
     public function getLoadedProductCollection()
     {
-        return $this->_productCollection;
+        return $this->_productCollection->setPageSize(1)->setCurPage(1);
     }
 
     /**

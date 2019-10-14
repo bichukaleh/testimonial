@@ -9,7 +9,6 @@ use Magento\Framework\App\ResponseInterface;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
 use Magento\Framework\App\Request\Http;
-
 class FeaturedProductsList extends Action
 {
     protected $_pageFactory;
@@ -49,14 +48,29 @@ class FeaturedProductsList extends Action
         if (isset($filters) && $filters != "" && is_array($filters)) {
             foreach ($filters as $column => $value) {
                 if (strpos($value, '-')) {
-                    $values = explode( '-',$value);
+                    $values = explode('-', $value);
                     $this->productCollection->addFieldToFilter($column, ['gt' => $values[0]]);
                     $this->productCollection->addFieldToFilter($column, ['lt' => $values[1]]);
-                } else if($column=="cat"){
+                } elseif ($column == 'product_list_order' || $column == 'product_list_dir') {
+                    if (key_exists('product_list_dir', $filters) && isset($filters['product_list_order'])) {
+                        $this->productCollection->addOrder($filters['product_list_order'], $filters['product_list_dir']);
+                    } else {
+                        $this->productCollection->addOrder($value, 'desc');
+                    }
+                } elseif ($column == "product_list_limit") {
+                    if(isset($filters['p'])){
+                        $currentPage=$filters['p'];
+                    }else{
+                        $currentPage=1;
+                    }
+                    $this->productCollection->setPageSize(1)->setCurPage(1);
+                } else if ($column == "cat") {
                     $catIds = explode(',', $value);
-                    $this->productCollection->addCategoriesFilter(array('in'=>$catIds));
-                } else{
-                    $this->productCollection->addFieldToFilter($column, ['eq' => $value]);
+                    $this->productCollection->addCategoriesFilter(array('in' => $catIds));
+                } else {
+                    if(!$column == 'p') {
+                        $this->productCollection->addFieldToFilter($column, ['eq' => $value]);
+                    }
                 }
 
             }

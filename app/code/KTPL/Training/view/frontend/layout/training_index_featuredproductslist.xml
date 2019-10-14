@@ -3,20 +3,44 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
 
     <referenceContainer name="content">
-
-        <block class="KTPL\Training\Block\FeaturedProductsList"
-               name="featured_products" template="Magento_Catalog::product/list.phtml"/>
+          <block class="KTPL\Training\Block\FeaturedProductsList"
+                   name="featured_products" template="Magento_Catalog::product/list.phtml">
+                <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-"
+                       template="Magento_LayeredNavigation::layer/view.phtml">
+                    <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state"
+                           as="state"/>-->
+                    <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer"
+                           name="catalog.navigation.renderer" as="renderer"
+                           template="Magento_LayeredNavigation::layer/filter.phtml"/>-->
+                </block>
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto"
+                       as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="category.product.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+                <block class="Magento\Catalog\Block\Product\ProductList\Toolbar" name="product_list_toolbar"
+                       template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">product_list_toolbar</argument>
+                </action>
+            </block>
         <!--                   name="featured_products" template="KTPL_Training::featured_products.phtml"/>-->
-<!--        <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-" template="Magento_LayeredNavigation::layer/view.phtml">-->
-<!--            <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />-->
-<!--            <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>-->
-<!--        </block>-->
+        <!--        <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-" template="Magento_LayeredNavigation::layer/view.phtml">-->
+        <!--            <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />-->
+        <!--            <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>-->
+        <!--        </block>-->
     </referenceContainer>
-    <referenceContainer name="sidebar.main">
-        <block class="KTPL\Training\Block\Navigation" name="catalog.leftnav" as="navigation" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
-            <block class="KTPL\Training\Block\Navigation\State" name="catalog.navigation.state" as="state" template="Magento_LayeredNavigation::layer/state.phtml" />
-            <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>
-        </block>
-    </referenceContainer>
+        <referenceContainer name="sidebar.main">
+            <block class="KTPL\Training\Block\Navigation" name="catalog.leftnav" as="navigation" before="-"
+                   template="Magento_LayeredNavigation::layer/view.phtml">
+                <block class="KTPL\Training\Block\Navigation\State" name="catalog.navigation.state" as="state"
+                       template="Magento_LayeredNavigation::layer/state.phtml"/>
+                <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer"
+                       as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>
+            </block>
+        </referenceContainer>
 
 </page>
