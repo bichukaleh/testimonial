@@ -8,6 +8,9 @@ var config = {
         mixins: {
             'Magento_Checkout/js/view/shipping': {
                 'KTPL_Checkout/js/mixin/shipping-mixin': true
+            },
+            'Magento_Checkout/js/view/shipping-information': {
+                'KTPL_Checkout/js/view/shipping-information': true
             }
         }
     }

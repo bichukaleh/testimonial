@@ -4,6 +4,11 @@ namespace KTPL\Training\Block;
 
 use Magento\Catalog\Model\ResourceModel\Collection\AbstractCollection;
 use Magento\Catalog\Block\Product\ListProduct;
+use Magento\Catalog\Block\Product\Context;
+use Magento\Framework\Data\Helper\PostHelper;
+use KTPL\Training\Model\Layer\Resolver;
+use Magento\Catalog\Api\CategoryRepositoryInterface;
+use Magento\Framework\Url\Helper\Data;
 class FeaturedProductsList extends ListProduct
 {
     protected $_data;
@@ -11,23 +16,24 @@ class FeaturedProductsList extends ListProduct
     protected $eavConfig;
     protected $attribute;
 
-    public function __construct(
-        \Magento\Catalog\Block\Product\Context $context,
-        \Magento\Framework\Data\Helper\PostHelper $postDataHelper,
-        \KTPL\Training\Model\Layer\Resolver $layerResolver,
-        \Magento\Catalog\Api\CategoryRepositoryInterface $categoryRepository,
-        \Magento\Framework\Url\Helper\Data $urlHelper,
-        array $data = []
-    ) {
-        parent::__construct($context, $postDataHelper, $layerResolver,
-            $categoryRepository, $urlHelper, $data);
+    /**
+     * FeaturedProductsList constructor.
+     * @param Context $context
+     * @param PostHelper $postDataHelper
+     * @param Resolver $layerResolver
+     * @param CategoryRepositoryInterface $categoryRepository
+     * @param Data $urlHelper
+     * @param array $data
+     */
+    public function __construct(Context $context, PostHelper $postDataHelper, Resolver $layerResolver, CategoryRepositoryInterface $categoryRepository, Data $urlHelper, array $data = []) {
+        parent::__construct($context, $postDataHelper, $layerResolver, $categoryRepository, $urlHelper, $data);
     }
     /**
      * @return \Magento\Eav\Model\Entity\Collection\AbstractCollection
      */
     public function getLoadedProductCollection()
     {
-        return $this->_productCollection->setPageSize(1)->setCurPage(1);
+        return $this->_productCollection;
     }
 
     /**

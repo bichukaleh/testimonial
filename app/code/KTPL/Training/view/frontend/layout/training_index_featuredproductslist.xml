@@ -8,10 +8,10 @@
             <block class="Magento\LayeredNavigation\Block\Navigation\Category" name="catalog.leftnav" before="-"
                    template="Magento_LayeredNavigation::layer/view.phtml">
                 <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state"
-                       as="state"/>-->
+                       as="state"/>
                 <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer"
                        name="catalog.navigation.renderer" as="renderer"
-                       template="Magento_LayeredNavigation::layer/filter.phtml"/>-->
+                       template="Magento_LayeredNavigation::layer/filter.phtml"/>
             </block>
             <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto"
                    as="addto">

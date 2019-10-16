@@ -45,6 +45,8 @@ class FeaturedProductsList extends Action
         $this->productCollection->addFieldToSelect('*');
         $this->productCollection->addFieldToFilter('featured_products', ['eq' => 1]);
         $list = $pageFactory->getLayout()->getBlock('featured_products');
+
+        // filter collection as per parameters
         if (isset($filters) && $filters != "" && is_array($filters)) {
             foreach ($filters as $column => $value) {
                 if (strpos($value, '-')) {
@@ -58,17 +60,17 @@ class FeaturedProductsList extends Action
                         $this->productCollection->addOrder($value, 'desc');
                     }
                 } elseif ($column == "product_list_limit") {
-                    if(isset($filters['p'])){
-                        $currentPage=$filters['p'];
-                    }else{
-                        $currentPage=1;
+                    if (isset($filters['p'])) {
+                        $currentPage = $filters['p'];
+                    } else {
+                        $currentPage = 1;
                     }
                     $this->productCollection->setPageSize(1)->setCurPage(1);
                 } else if ($column == "cat") {
                     $catIds = explode(',', $value);
                     $this->productCollection->addCategoriesFilter(array('in' => $catIds));
                 } else {
-                    if(!$column == 'p') {
+                    if (!$column == 'p') {
                         $this->productCollection->addFieldToFilter($column, ['eq' => $value]);
                     }
                 }
