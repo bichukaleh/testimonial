@@ -77,9 +77,7 @@ class FeaturedProductsList extends Action
         }
 
         $list->setProductCollection($this->productCollection);
-//        echo "<pre>";
-//        print_r($this->productCollection->getData());
-//        exit;
+
         $pageFactory->getConfig()->getTitle()->set("Featured Products List");
         return $pageFactory;
     }
