@@ -1,0 +1,65 @@
+<style>
+    .pull-right {
+        float: right;
+    }
+    .custom-padding{
+        padding: 5px;
+    }
+</style>
+<h3>Testimonial</h3>
+<div id="owl-demo">
+<?php $testimonials= $block->getTestimonialData();
+foreach($testimonials as $testimonial):?>
+
+    <div class="item">
+        <div class="custom-padding">
+             <span class="text-muted pull-right">
+                 <small class="text-muted">
+                     <?php echo date('d/m/Y', strtotime($testimonial->getData('created_at'))); ?>
+                 </small>
+             </span>
+            <strong class="text-success">@<?php echo $testimonial->getData('name'); ?></strong>
+            <p>
+                <?php echo $testimonial->getData('message'); ?>
+                <span class="pull-right">
+                    <?php
+                    for ($cnt = 1; $cnt <= 5; $cnt++) {
+                        if ($cnt <= $testimonial->getData('ratings')) {
+                            echo " * ";
+                        }
+                    } ?>
+                </span>
+            </p>
+        </div>
+    </div>
+    <?php endforeach; ?>
+</div>
+<pre class="custom-js" id="custom-js">
+</pre>
+<!--<script>-->
+<!--    require([-->
+<!---->
+<!--        'customScript',-->
+<!--        'jquery',-->
+<!--    ], function ($, script) {-->
+<!--      console.log('slider.html','test');-->
+<!--    });-->
+<!--</script>-->
+<script type="text/x-magento-init">
+    {
+        "#owl-demo": {
+            "OwlCarousel": {
+                "autoPlay": 3000,
+                "items": 4,
+                "itemsDesktop": [1199, 3],
+                "itemsDesktopSmall": [979, 3]
+            }
+        },
+        ".custom-js":{
+            "customScript":{
+                "base_url":"<?php echo $block->escapeJs($block->getBaseUrl());?>"
+            }
+        }
+    }
+
+</script>

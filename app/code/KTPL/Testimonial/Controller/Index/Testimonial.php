@@ -64,9 +64,6 @@ class Testimonial extends Action
     {
         if ($this->getRequest()->isPost()) {
             $input = $this->getRequest()->getPostValue();
-            echo "<pre>";
-            print_r($input);
-            exit;
             $file = $this->getRequest()->getFiles();
             $input['image'] = $file['image'];
             $_FILES['image']=$file['image'];

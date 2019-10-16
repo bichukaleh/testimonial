@@ -1,0 +1,21 @@
+<h4>KO</h4>
+<p><?php echo "custom var:". $block->getVariableValue('custom_variable_code') ?>  </p>
+<div data-bind="scope: 'example'" id="example">
+    <p>First Name:<input data-bind="value: firstName"/></p>
+    <p>Last Name: <input data-bind="value: lastName"/></p>
+    <br><p data-bind="text: fullName">123</p>
+</div>
+<script type="text/x-magento-init">
+        {
+            "*": {
+               "Magento_Ui/js/core/app": {
+                   "components": {
+                       "example": {
+                           "component": "KTPL_Training/js/example"
+                       }
+                   }
+               }
+            }
+        }
+
+</script>

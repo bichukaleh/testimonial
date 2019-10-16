@@ -8,7 +8,6 @@ use Magento\Framework\App\Action\Context;
 use KTPL\Testimonial\Model\TestimonialFactory;
 use KTPL\Testimonial\Helper\Data;
 use Magento\Backend\Model\UrlInterface;
-
 class ListTestimonial extends Action
 {
     protected $request;
@@ -35,7 +34,9 @@ class ListTestimonial extends Action
 
     public function execute()
     {
-        return $this->_pageFactory->create();
+        $pageFactory= $this->_pageFactory->create();
+        $pageFactory->getConfig()->getTitle()->set("Testimonials List");
+        return $pageFactory;
     }
 
 }

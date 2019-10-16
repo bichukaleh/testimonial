@@ -23,7 +23,9 @@ class NewTestimonial extends Action
 
     public function execute()
     {
-        return $this->_pageFactory->create();
+        $pageFactory = $this->_pageFactory->create();
+        $pageFactory->getConfig()->getTitle()->set('Add New Testimonial');
+        return $pageFactory;
     }
 
 

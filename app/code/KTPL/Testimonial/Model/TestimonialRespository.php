@@ -1,10 +1,4 @@
 <?php
-/**
- * File: DataProvider.php
- *
- * @author      KTPL
- * Github:      https://github.com/maciejslawik
- */
 
 namespace KTPL\Testimonial\Model;
 
@@ -13,60 +7,64 @@ use KTPL\Testimonial\Model\ResourceModel\Testimonial\CollectionFactory;
 use KTPL\Testimonial\Model\ResourceModel\Testimonial\Collection;
 use KTPL\Testimonial\Model\TestimonialFactory as TestimonialModel;
 use KTPL\Testimonial\Model\ResourceModel\Testimonial;
-
 class TestimonialRespository implements TestimonialRepositoryInterface
 {
 
+    /** @var TestimonialFactory */
     protected $testimonialFactory;
+    /**  @var Testimonial|\KTPL\Testimonial\Model\Testimonial */
     protected $testimonial;
+    /**  @var TestimonialFactory */
     protected $testimonialModel;
 
     /**
      * TestimonialRespository constructor.
      * @param CollectionFactory $collectionFactory
-     * @param \KTPL\Testimonial\Model\TestimonialFactory $testimonialFactory
-     * @param \KTPL\Testimonial\Model\Testimonial $testimonial
+     * @param TestimonialFactory $testimonialModel
+     * @param TestimonialFactory $testimonialFactory
+     * @param Testimonial $testimonial
      */
-    public function __construct(CollectionFactory $collectionFactory,TestimonialModel $testimonialModel, TestimonialFactory $testimonialFactory, Testimonial $testimonial)
-    {
+    public function __construct(
+        CollectionFactory $collectionFactory,
+        TestimonialModel $testimonialModel,
+        TestimonialFactory $testimonialFactory,
+        Testimonial $testimonial
+    ) {
         /** @var Collection collection */
         $this->collection = $collectionFactory->create()->addFieldToFilter('deleted_at', ['null' => true]);
         $this->testimonialFactory = $testimonialFactory;
         $this->testimonial = $testimonial;
-        $this->testimonialModel=$testimonialModel;
+        $this->testimonialModel = $testimonialModel;
     }
 
     /**
-     * @return array
+     * @return Collection
      */
     public function getCollection()
     {
         return $this->collection->setOrder('testimonial_id', 'DESC');
-
     }
 
     /**
-     * get testimonial data
-     * @return \KTPL\Testimonial\Api\Data\TestimonialInterface
+     * @return array|\KTPL\Testimonial\Api\Data\TestimonialInterface
      */
     public function getList()
     {
-
         if (!$this->getCollection()->isLoaded()) {
             $this->getCollection()->load();
         }
         $collection = $this->getCollection()->toArray();
-
         return $collection;
     }
 
     /**
-     * @param $id
+     * @param $testimonial_id
      * @return \KTPL\Testimonial\Api\Data\TestimonialInterface
      */
     public function getTestimonialById($testimonial_id)
     {
-        return $this->testimonialFactory->create()->load($testimonial_id);
+//        return $this->testimonialFactory->create()->load($testimonial_id);
+        return $this->testimonialModel->create()->load($testimonial_id);
     }
 
     /**
@@ -105,7 +103,7 @@ class TestimonialRespository implements TestimonialRepositoryInterface
      */
     public function DeleteTestimonialById($testimonial_id)
     {
-        $testimonial= $this->testimonialFactory->create();
+        $testimonial = $this->testimonialFactory->create();
         $testimonial->setId($testimonial_id);
         $testimonial->setDeletedAt(date('y-m-d'));
         $this->testimonial->save($testimonial);
