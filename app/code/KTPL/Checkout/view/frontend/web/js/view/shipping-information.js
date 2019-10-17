@@ -31,7 +31,6 @@ define([
                 if(shippingMethodCode === 'customshipping_customshipping') {
 
                     console.log("SHIPPING METHOD", shippingMethod, quote);
-                    // EXTENSION ATTRIBUTES NOT AVAILABLE HERE, I want to change shipping method content
                 }
 
                 return shippingMethodContent;

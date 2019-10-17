@@ -51,35 +51,27 @@ class FeaturedProductsList extends Action
             foreach ($filters as $column => $value) {
                 if (strpos($value, '-')) {
                     $values = explode('-', $value);
-                    $this->productCollection->addFieldToFilter($column, ['gt' => $values[0]]);
-                    $this->productCollection->addFieldToFilter($column, ['lt' => $values[1]]);
+                    $this->productCollection->addFieldToFilter($column, ['gteq' => $values[0]]);
+                    $this->productCollection->addFieldToFilter($column, ['lteq' => $values[1]]);
                 } elseif ($column == 'product_list_order' || $column == 'product_list_dir') {
-                    if (key_exists('product_list_dir', $filters) && isset($filters['product_list_order'])) {
-                        $this->productCollection->addOrder($filters['product_list_order'], $filters['product_list_dir']);
-                    } else {
-                        $this->productCollection->addOrder($value, 'desc');
-                    }
+                    $this->productCollection->setOrder($filters['product_list_order']);
                 } elseif ($column == "product_list_limit") {
-                    if (isset($filters['p'])) {
-                        $currentPage = $filters['p'];
-                    } else {
-                        $currentPage = 1;
-                    }
-                    $this->productCollection->setPageSize(1)->setCurPage(1);
-                } else if ($column == "cat") {
+                    $currentPage = isset($filters['p']) ? $filters['p'] : 1;
+                    $this->productCollection->setPageSize($value)->setCurPage($currentPage);
+                } elseif ($column == "cat") {
                     $catIds = explode(',', $value);
-                    $this->productCollection->addCategoriesFilter(array('in' => $catIds));
+                    $this->productCollection->addCategoriesFilter(['in' => $catIds]);
                 } else {
                     if (!$column == 'p') {
                         $this->productCollection->addFieldToFilter($column, ['eq' => $value]);
                     }
                 }
-
             }
         }
 
+        // pass data to block
         $list->setProductCollection($this->productCollection);
-
+        // set page title
         $pageFactory->getConfig()->getTitle()->set("Featured Products List");
         return $pageFactory;
     }

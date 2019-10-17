@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                ktpl_admin_listing.ktpl_admin_login_data_source
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>ktpl_admin_listing</spinner>
+        <deps>
+            <dep>ktpl_admin_listing.ktpl_admin_login_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="ktpl_admin_login_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">KTPL\Admin\Model\ListAllDataProvider</argument>
+            <argument name="name" xsi:type="string">ktpl_admin_login_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">entity_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="status"/>
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="deleted" xsi:type="array">
+                        <item name="deleted_at" xsi:type="string">null</item>
+                    </item>
+                </item>
+            </argument>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="ktpl_admin_listing">
+
+        <column name="entity_id">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="username" sortOrder="2">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">User Name</label>
+            </settings>
+        </column>
+
+        <column name="ip-address" sortOrder="4">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">IP Address</label>
+            </settings>
+        </column>
+        <column name="status" class="KTPL\Admin\Ui\Component\Listing\Column\Status" sortOrder="60">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">6</item>
+                    <item name="label" translate="true" xsi:type="string">Status</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                </item>
+            </argument>
+        </column>
+
+        <column name="created_at" sortOrder="9">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Created_at</label>
+                <editor>
+                    <editorType>text</editorType>
+                </editor>
+            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">5</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Logged in Date-Time</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>
