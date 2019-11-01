@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product.info.details">
+            <!-- For Custom tab -->
+            <block class="KTPL\Admin\Block\CustomData" name="product.customdata"
+                   template="KTPL_Admin::custom-section.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Custom Info</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

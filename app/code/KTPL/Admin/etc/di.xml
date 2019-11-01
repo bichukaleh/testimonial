@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="KTPL\Admin\Model\ResourceModel\Testimonial\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">ktpl_admin_login_logs</argument>
+            <argument name="resourceModel" xsi:type="string">KTPL\Admin\Model\ResourceModel\AdminLog</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ktpl_admin_login_data_source" xsi:type="string">
+                    KTPL\Admin\Model\ResourceModel\Admin\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
