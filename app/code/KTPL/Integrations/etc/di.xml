@@ -2,11 +2,9 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
-        <plugin name="save_product_integrations"
-                type="KTPL\Integrations\Plugin\Product\Save" sortOrder="10"
-        />
+        <plugin name="save_product" type="KTPL\Integrations\Plugin\Product\Save" sortOrder="10"/>
     </type>
     <type name="Magento\Customer\Controller\Adminhtml\Index\Save">
-    	<plugin name="save_customer" type="KTPL\Integrations\Plugin\Customer\Save" />    
-	</type>
+        <plugin name="save_customer" type="KTPL\Integrations\Plugin\Customer\Save" sortOrder="20"/>
+    </type>
 </config>

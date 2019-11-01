@@ -2,66 +2,36 @@
 
 namespace KTPL\Integrations\Plugin\Customer;
 
-use Magento\Customer\Api\Data\GroupInterface;
-use Magento\Framework\Api\ExtensionAttributesInterface\Config;
-use Magento\Framework\HTTP\Client\Curl;
+use KTPL\Integrations\Helper\CurlRequest;
 class Save
 {
-        /**
-         * @var \Magento\Framework\HTTP\Client\Curl
-        */
-    protected $_curl;
+    /** @var KTPL\Integrations\Helper\CurlRequest */
+    protected $_curlHelper;
 
-    protected $_responseFactory;
-    protected $_url;
-
-    public function __construct(
-        \Magento\Framework\App\ResponseFactory $responseFactory,
-        \Magento\Framework\UrlInterface $url,
-        \Magento\Backend\Block\Template\Context $context,
-        \Magento\Framework\Registry $registry,
-        \Magento\Framework\Data\FormFactory $formFactory,
-        Curl $curl,
-        array $data = []
-    ) {
-        $this->_curl = $curl;
-        $this->_responseFactory = $responseFactory;
-        $this->_url = $url;
+    /**
+     * Save constructor.
+     * @param CurlRequest $curlRequest
+     */
+    public function __construct(CurlRequest $curlRequest)
+    {
+        $this->_curlHelper = $curlRequest;
     }
 
-    public function beforeexecute(\Magento\Customer\Controller\Adminhtml\Index\Save $save)
+    /**
+     * function to call before execute method of customer adding
+     * @param \Magento\Customer\Controller\Adminhtml\Index\Save $save
+     */
+    public function beforeExecute(\Magento\Customer\Controller\Adminhtml\Index\Save $save)
     {
-        $post = $save->getRequest()->getPostValue();
-        //API URL for authentication
-        
-        //parameters passing with URL
+        // Authentication token
+        $token = $this->_curlHelper->getAuthenticationToken();
+        if ($token) {
+            //API URL to add customer
+            $post = $save->getRequest()->getPostValue();
+            unset($post['customer']['sendemail_store_id']);
+            $post['customer']['gender'] = intval($post['customer']['gender']);
 
-        $data = array("username" => "admin", "password" => "admin123");
-        
-
-        $url = 'http://10.16.16.187/magentodemo/index.php/rest/V1/integration/admin/token';
-         $this->_curl->addHeader('Content-Type','application/json');
-        $this->_curl->post($url, json_encode($data));
-
-        //response will contain the output in form of JSON string
-        $response = $this->_curl->getBody();
-
-
-        //decoding generated token and saving it in a variable
-
-        $token = json_decode($response);
-
-      
-        //API URL to get all Magento 2 modules
-        unset($post['customer']['sendemail_store_id']);
-        $post['customer']['gender']=intval($post['customer']['gender']);
-        
-        $url = 'http://10.16.16.187/magentodemo/rest/V1/customers/';
-        $this->_curl->addHeader('Content-Type','application/json');
-        $this->_curl->addHeader('Authorization',"Bearer " . $token);
-        $this->_curl->post($url, json_encode($post));
-
-        //response will contain the output in form of JSON string
-        // $response = $this->_curl->getBody();
+            $this->_curlHelper->saveDataUsingCurl('rest/V1/customers/', $token, $post);
+        }
     }
 }
