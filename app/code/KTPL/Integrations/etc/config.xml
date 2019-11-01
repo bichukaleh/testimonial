@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <integration>
+            <general>
+                <enable>1</enable>
+                <admin_credentials>1</admin_credentials>
+            </general>
+        </integration>
+    </default>
+</config>
