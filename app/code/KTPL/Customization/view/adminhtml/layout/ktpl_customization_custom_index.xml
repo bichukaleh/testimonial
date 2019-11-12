@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="KTPL_Customization::js/custom.js"/>
+    </head>
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="KTPL\Customization\Block\Grid" name="grid_grid_listing"
+                   template="KTPL_Customization::grid/view.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

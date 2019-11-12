@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--
+@author Krish Technolabs
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Ktpl_Travelquote::js/travelquote.js"/>
+        <css src="Ktpl_Travelquote::css/travelquote.css"/>
+    </head>
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Ktpl\Travelquote\Block\Grid" name="grid_travelquote_listing"
+                   template="Ktpl_Travelquote::grid/travelquote.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

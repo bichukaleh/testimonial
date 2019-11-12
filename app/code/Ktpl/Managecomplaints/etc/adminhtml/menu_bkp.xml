@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+@author Krish Technolabs
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Managecomplaints::managecomplaints" title="Ktpl" module="Ktpl_Managecomplaints" sortOrder="51"
+             resource="Ktpl_Managecomplaints::ktpl"/>
+        <add id="Ktpl_Managecomplaints::managecomplaints_list" title="Manage Complaints" module="Ktpl_Managecomplaints"
+             sortOrder="10" action="ktpl_managecomplaints/action/index" resource="Ktpl_Managecomplaints::managecomplaints_list"
+             parent="Ktpl_Managecomplaints::managecomplaints"/>
+    </menu>
+</config>

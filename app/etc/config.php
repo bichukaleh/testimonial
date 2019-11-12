@@ -187,9 +187,13 @@ return [
         'Magento_WishlistSampleData' => 1,
         'KTPL_Admin' => 0,
         'KTPL_Checkout' => 0,
+        'KTPL_Customization' => 1,
         'KTPL_Integrations' => 1,
-        'KTPL_Testimonial' => 0,
+        'KTPL_Testimonial' => 1,
         'KTPL_Training' => 0,
+        'Ktpl_Base' => 1,
+        'Ktpl_Managecomplaints' => 1,
+        'Ktpl_Travelquote' => 1,
         'MagePal_GmailSmtpApp' => 1
     ]
 ];
