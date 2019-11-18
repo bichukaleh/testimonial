@@ -1,0 +1,151 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                ktpl_customization_custom_listing.testimonial_listing_data_source
+            </item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>ktpl_customization_custom_listing</spinner>
+        <deps>
+            <dep>ktpl_customization_custom_listing.testimonial_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="testimonial_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">KTPL\Testimonial\Model\ListAllDataProvider</argument>
+            <argument name="name" xsi:type="string">testimonial_listing_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">testimonial_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">testimonial_id</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <columnsControls name="columns_controls"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="ktpl_customization_custom_listing">
+        <settings>
+            <!--            <editorConfig>-->
+            <!--                <param name="clientConfig" xsi:type="array">-->
+            <!--                    <item name="saveUrl" xsi:type="url" path="ktpl_customization/custom/inlineEdit"/>-->
+            <!--                    <item name="validateBeforeSave" xsi:type="boolean">false</item>-->
+            <!--                </param>-->
+            <!--                <param name="indexField" xsi:type="string">testimonial_id</param>-->
+            <!--                <param name="enabled" xsi:type="boolean">true</param>-->
+            <!--                <param name="selectProvider" xsi:type="string">-->
+            <!--                    ktpl_customization_custom_listing.ktpl_customization_custom_listing.ktpl_customization_custom_listing.ids-->
+            <!--                </param>-->
+            <!--            </editorConfig>-->
+            <!--            <childDefaults>-->
+            <!--                <param name="fieldAction" xsi:type="array">-->
+            <!--                    <item name="provider" xsi:type="string">-->
+            <!--                        ktpl_customization_custom_listing.ktpl_customization_custom_listing.ktpl_customization_custom_listing_editor-->
+            <!--                    </item>-->
+            <!--                    <item name="target" xsi:type="string">startEdit</item>-->
+            <!--                    <item name="params" xsi:type="array">-->
+            <!--                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>-->
+            <!--                        <item name="1" xsi:type="boolean">true</item>-->
+            <!--                    </item>-->
+            <!--                </param>-->
+            <!--            </childDefaults>-->
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>testimonial_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="testimonial_id" sortOrder="1">
+            <settings>
+                <filter>text</filter>
+                <sorting>asc</sorting>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="name" sortOrder="2">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <!--        <column name="is_approved" class="KTPL\Testimonial\Ui\Component\Listing\Column\IsApproved" sortOrder="3">-->
+        <!--            <settings>-->
+        <!--                <options class="KTPL\Testimonial\Ui\Component\Listing\Column\ApprovalOptions"/>-->
+        <!--                <filter>select</filter>-->
+        <!--                <label translate="true">Approval Status</label>-->
+        <!--                <editor>-->
+        <!--                    <editorType>select</editorType>-->
+        <!--                    <validation>-->
+        <!--                        <rule name="required-entry" xsi:type="boolean">true</rule>-->
+        <!--                    </validation>-->
+        <!--                </editor>-->
+        <!--                <dataType>select</dataType>-->
+        <!--            </settings>-->
+        <!--        </column>-->
+        <!--        <column name="is_approved" component="Magento_Ui/js/grid/columns/select">-->
+        <!--            <settings>-->
+        <!--                <options class="KTPL\Testimonial\Ui\Component\Listing\Column\ApprovalOptions"/>-->
+        <!--                <filter>select</filter>-->
+        <!--                <editor>-->
+        <!--                    <editorType>select</editorType>-->
+        <!--                </editor>-->
+        <!--                <dataType>select</dataType>-->
+        <!--                <label translate="true">Status</label>-->
+        <!--            </settings>-->
+        <!--        </column>-->
+
+        <column name="is_approved" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+<!--                <renderer name="adminhtml" instance="KTPL\Customization\Block\Testimonial\Testimonial"/>-->
+                <options class="KTPL\Testimonial\Ui\Component\Listing\Column\ApprovalOptions"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+
+<!--        <renderer name="adminhtml" instance="KTPL\Customization\Block\Testimonial\Testimonial"/>-->
+        <column name="created_at" sortOrder="4">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Created_at</label>
+                <editor>
+                    <editorType>date</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                </editor>
+            </settings>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">dateRange</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                    <item name="dataType" xsi:type="string">date</item>
+                    <item name="label" xsi:type="string" translate="true">Created Date</item>
+                    <item name="dateFormat" xsi:type="string">MMM d, Y</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>
+

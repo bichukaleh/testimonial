@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!--
+@author Krish Technolabs
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="ktpl_managecomplaints" frontName="ktpl_managecomplaints">
+            <module name="Ktpl_Managecomplaints" />
+        </route>
+    </router>
+</config>

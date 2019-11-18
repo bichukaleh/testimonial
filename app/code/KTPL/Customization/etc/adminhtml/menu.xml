@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+@author Krish Technolabs
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="KTPL_Customization::data" title="Customization" module="KTPL_Customization" sortOrder="4"
+             resource="KTPL_Customization::data"
+             action="ktpl_customization/custom/index"/>
+    </menu>
+</config>

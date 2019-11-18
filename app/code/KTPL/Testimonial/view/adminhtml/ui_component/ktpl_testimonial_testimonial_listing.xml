@@ -72,11 +72,27 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="ktpl_testimonial_testimonial_listing">
-        <selectionsColumn name="ids">
-            <settings>
-                <indexField>testimonial_id</indexField>
-            </settings>
-        </selectionsColumn>
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="ktpl_testimonial/testimonial/inlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">testimonial_id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">ktpl_testimonial_testimonial_listing.ktpl_testimonial_testimonial_listing.ktpl_testimonial_testimonial_listing.ids</param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">ktpl_testimonial_testimonial_listing.ktpl_testimonial_testimonial_listing.ktpl_testimonial_testimonial_listing_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
         <column name="testimonial_id">
             <settings>
                 <filter>text</filter>
@@ -84,6 +100,11 @@
                 <label translate="true">ID</label>
             </settings>
         </column>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>testimonial_id</indexField>
+            </settings>
+        </selectionsColumn>
         <column name="name" sortOrder="2">
             <settings>
                 <filter>text</filter>
@@ -91,7 +112,7 @@
                 <editor>
                     <editorType>text</editorType>
                     <validation>
-                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
                     </validation>
                 </editor>
             </settings>
@@ -100,34 +121,26 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Email</label>
-                <editor>
-                    <editorType>text</editorType>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">false</rule>
-                    </validation>
-                </editor>
             </settings>
         </column>
         <column name="message" sortOrder="4">
             <settings>
                 <filter>text</filter>
                 <label translate="true">Message</label>
-                <editor>
-                    <editorType>text</editorType>
-                    <validation>
-                        <rule name="required-entry" xsi:type="boolean">false</rule>
-                    </validation>
-                </editor>
             </settings>
         </column>
         <column name="is_approved" class="KTPL\Testimonial\Ui\Component\Listing\Column\IsApproved" sortOrder="60">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="sortOrder" xsi:type="number">60</item>
-                    <item name="label" translate="true" xsi:type="string">Approval Status</item>
-                    <item name="dataType" xsi:type="string">select</item>
-                </item>
-            </argument>
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="sortOrder" xsi:type="number">60</item>-->
+<!--                    <item name="label" translate="true" xsi:type="string">Approval Status</item>-->
+<!--                    <item name="dataType" xsi:type="string">select</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+            <settings>
+            <filter>select</filter>
+                <label translate="true">Approval Status</label>
+            </settings>
         </column>
         <column name="image" class="KTPL\Testimonial\Ui\Component\Listing\Column\Thumbnail"
                 component="Magento_Ui/js/grid/columns/thumbnail" sortOrder="1">
@@ -145,9 +158,6 @@
             <settings>
                 <filter>text</filter>
                 <label translate="true">Created_at</label>
-                <editor>
-                    <editorType>text</editorType>
-                </editor>
             </settings>
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

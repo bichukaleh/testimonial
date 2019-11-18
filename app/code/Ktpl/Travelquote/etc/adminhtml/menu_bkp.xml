@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+@author Krish Technolabs
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ktpl_Travelquote::travelquote" title="Ktpl" module="Ktpl_Travelquote" sortOrder="51"
+             resource="Ktpl_Travelquote::ktpl" />
+        <add id="Ktpl_Travelquote::travelquote_list" title="Travel Quote" module="Ktpl_Travelquote"
+             sortOrder="20" action="ktpl_travelquote/action/index" resource="Ktpl_Travelquote::travelquote_list"
+             parent="Ktpl_Travelquote::travelquote"/>
+    </menu>
+</config>
