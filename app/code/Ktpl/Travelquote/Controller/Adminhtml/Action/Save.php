@@ -32,6 +32,7 @@ class Save extends Action
         $postItems = $this->getRequest()->getParams();
         if (!empty($postItems)) {
             $input = $postItems;
+            $input['sku'] = 'new_travel_package';
             $travelquote = $this->_travelquoteFactory->create();
             if (count($input)) {
                 try {
