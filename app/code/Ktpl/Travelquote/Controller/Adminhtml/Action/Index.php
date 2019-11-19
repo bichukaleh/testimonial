@@ -45,7 +45,7 @@ class Index extends Action
             $resultPage->setContents($pagesGrid->toHtml());
         } else {
             $resultPage = $this->_resultPageFactory->create();
-            $resultPage->getConfig()->getTitle('Travelquote');
+            $resultPage->getConfig()->getTitle()->prepend((__('Travelquote')));
         }
         return $resultPage;
     }

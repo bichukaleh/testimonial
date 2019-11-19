@@ -1,6 +1,22 @@
+<?php $url = $block->getUrl('ktpl_travelquote/action/new'); ?>
+<div class="page-main-actions">
+    <div class="page-actions-placeholder"></div>
+    <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+        <div class="page-actions-inner" data-title="Travel Quotes">
+            <div class="page-actions-buttons">
+                <button id="add" title="Add New Travel Quote" type="button" class="action- scalable primary"
+                        onclick="location.href = '<?php echo $url;?>';"
+                        data-ui-id="add-button">
+                    <span>Add New Travel Quote</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php
 /**
  * @var Ktpl\Travelquote\Block\Grid $block
  */
+
 echo $block->getGridHtml();
 ?>

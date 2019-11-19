@@ -44,7 +44,7 @@ class Index extends Action
             $resultPage->setContents($pagesGrid->toHtml());
         } else {
             $resultPage = $this->_resultPageFactory->create();
-            $resultPage->getConfig()->getTitle('Managecomplaints');
+            $resultPage->getConfig()->getTitle()->prepend((__('Managecomplaints')));
         }
         return $resultPage;
     }

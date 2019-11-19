@@ -1,0 +1,21 @@
+<!--
+@author Krish Technolabs
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+        <virtualType name="Ktpl\Travelquote\Model\ResourceModel\Travelquote\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+            <arguments>
+                <argument name="mainTable" xsi:type="string">travelquote</argument>
+                <argument name="resourceModel" xsi:type="string">Ktpl\Travelquote\Model\ResourceModel\Travelquote</argument>
+            </arguments>
+        </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="ktpl_travelquote_form_data_source" xsi:type="string">
+                    Ktpl\Travelquote\Model\ResourceModel\Travelquote\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

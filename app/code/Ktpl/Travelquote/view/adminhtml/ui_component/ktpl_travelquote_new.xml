@@ -1,0 +1,272 @@
+<?xml version="1.0" ?>
+<!--
+@author Krish Technolabs
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                ktpl_travelquote_new.ktpl_travelquote_form_data_source
+            </item>
+        </item>
+        <item name="label" translate="true" xsi:type="string">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <namespace>ktpl_travelquote_new</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>ktpl_travelquote_new.ktpl_travelquote_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button class="Ktpl\Travelquote\Block\Adminhtml\Button\BackButton" name="back"/>
+            <button class="Ktpl\Travelquote\Block\Adminhtml\Button\SaveButton" name="save"/>
+        </buttons>
+    </settings>
+    <dataSource name="ktpl_travelquote_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="ktpl_travelquote/action/save"/>
+        </settings>
+        <dataProvider class="Ktpl\Travelquote\Model\ResourceModel\Travelquote\DataProvider"
+                      name="ktpl_travelquote_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label/>
+        </settings>
+
+        <field name="firstname" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">First Name</label>
+                <dataScope>firstname</dataScope>
+            </settings>
+        </field>
+        <field name="lastname" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Last Name</label>
+                <dataScope>lastname</dataScope>
+            </settings>
+        </field>
+        <field name="mobile" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Mobile Number(+230)</label>
+                <dataScope>mobile</dataScope>
+            </settings>
+        </field>
+        <field name="email" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-email" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Email</label>
+                <dataScope>email</dataScope>
+            </settings>
+        </field>
+        <field name="package" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <visible>true</visible>
+                <label translate="true">Destination Package</label>
+                <dataScope>package</dataScope>
+            </settings>
+        </field>
+        <field name="flexible_date" formElement="radioset">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>string</dataType>
+                <visible>true</visible>
+                <label translate="true">Travel Dates</label>
+                <dataScope>flexible_date</dataScope>
+            </settings>
+            <formElements>
+                <radioset>
+                    <settings>
+                        <options class="Ktpl\Travelquote\Ui\Component\Listing\Column\FelxibleDateOptions"/>
+                    </settings>
+                </radioset>
+            </formElements>
+        </field>
+        <field name="departure" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <visible>true</visible>
+                <label translate="true">Departing Date</label>
+                <dataScope>departure</dataScope>
+            </settings>
+        </field>
+        <field name="return" formElement="date">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>string</dataType>
+                <visible>true</visible>
+                <label translate="true">Return Date</label>
+                <dataScope>return</dataScope>
+            </settings>
+        </field>
+        <field name="adult" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Adult</label>
+                <dataScope>adult</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\Travelquote\Ui\Component\Listing\Column\AdultOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="teen" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Teen</label>
+                <dataScope>teen</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\Travelquote\Ui\Component\Listing\Column\NumberOfPersonOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="child" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Child</label>
+                <dataScope>child</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\Travelquote\Ui\Component\Listing\Column\NumberOfPersonOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="infant" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Infant</label>
+                <dataScope>infant</dataScope>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Ktpl\Travelquote\Ui\Component\Listing\Column\NumberOfPersonOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field formElement="textarea" name="customer_comment">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">travelquote</item>
+                    <item name="rows" xsi:type="string">10</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Any Questions or Comments?</label>
+                <dataScope>customer_comment</dataScope>
+            </settings>
+        </field>
+    </fieldset>
+</form>
